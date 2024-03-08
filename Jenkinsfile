@@ -13,7 +13,7 @@ pipeline {
                     def imageName = "${env.IMAGE_NAME}"
                     def fullVersion = "${env.MAJOR_VERSION}.${env.MINOR_VERSION}.${env.BUILD_NUMBER}"
                     dir('identity-gateway') {
-                        docker.build("${imageName}:${fullVersion} -f docker/Dockerfile")
+                        sh "docker build -t ${imageName}:${fullVersion} -f docker/Dockerfile ."
                         docker.withRegistry('https://index.docker.io/v1/', env.DOCKERHUB_CREDENTIALS_ID) {
                             docker.image("${imageName}:${fullVersion}").push()
                         }
