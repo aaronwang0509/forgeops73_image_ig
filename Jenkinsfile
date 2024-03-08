@@ -7,14 +7,13 @@ pipeline {
         MINOR_VERSION = '30'
     }
     stages {
-        /*
         stage('Build and Push ig Image') {
             steps {
                 script {
                     def imageName = "${env.IMAGE_NAME}"
                     def fullVersion = "${env.MAJOR_VERSION}.${env.MINOR_VERSION}.${env.BUILD_NUMBER}"
-                    dir('identity-gateway/docker') {
-                        docker.build("${imageName}:${fullVersion}")
+                    dir('identity-gateway') {
+                        docker.build("-f docker/Dockerfile -t ${imageName}:${fullVersion}")
                         docker.withRegistry('https://index.docker.io/v1/', env.DOCKERHUB_CREDENTIALS_ID) {
                             docker.image("${imageName}:${fullVersion}").push()
                         }
@@ -22,7 +21,6 @@ pipeline {
                 }
             }
         }
-        */
         stage('Build and Push ig-build Image') {
             steps {
                 script {
