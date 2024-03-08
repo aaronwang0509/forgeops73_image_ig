@@ -7,6 +7,7 @@ pipeline {
         MINOR_VERSION = '30'
     }
     stages {
+        /*
         stage('Build and Push ig Image') {
             steps {
                 script {
@@ -21,6 +22,7 @@ pipeline {
                 }
             }
         }
+        */
         stage('Build and Push ig-build Image') {
             steps {
                 script {
